@@ -5,12 +5,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/shirou/gopsutil/cpu"
-	"github.com/shirou/gopsutil/disk"
-	"github.com/shirou/gopsutil/host"
-	"github.com/shirou/gopsutil/load"
-	"github.com/shirou/gopsutil/mem"
-	"github.com/shirou/gopsutil/net"
 	"io"
 	"io/fs"
 	"net/http"
@@ -20,6 +14,13 @@ import (
 	"x-ui/logger"
 	"x-ui/util/sys"
 	"x-ui/xray"
+
+	"github.com/shirou/gopsutil/cpu"
+	"github.com/shirou/gopsutil/disk"
+	"github.com/shirou/gopsutil/host"
+	"github.com/shirou/gopsutil/load"
+	"github.com/shirou/gopsutil/mem"
+	"github.com/shirou/gopsutil/net"
 )
 
 type ProcessState string
@@ -171,7 +172,7 @@ func (s *ServerService) GetStatus(lastStatus *Status) *Status {
 }
 
 func (s *ServerService) GetXrayVersions() ([]string, error) {
-	url := "https://api.github.com/repos/hossinasaadi/Xray-core/releases"
+	url := "https://api.github.com/repos/XTLS/Xray-core/releases"
 	resp, err := http.Get(url)
 	if err != nil {
 		return nil, err
@@ -214,7 +215,7 @@ func (s *ServerService) downloadXRay(version string) (string, error) {
 	}
 
 	fileName := fmt.Sprintf("Xray-%s-%s.zip", osName, arch)
-	url := fmt.Sprintf("https://github.com/hossinasaadi/Xray-core/releases/download/%s/%s", version, fileName)
+	url := fmt.Sprintf("https://github.com/XTLS/Xray-core/releases/download/%s/%s", version, fileName)
 	resp, err := http.Get(url)
 	if err != nil {
 		return "", err
