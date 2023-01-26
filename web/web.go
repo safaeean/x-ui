@@ -311,7 +311,7 @@ func (s *Server) startTask() {
 	s.cron.AddJob("@every 30s", job.NewCheckInboundJob())
 
 	// check client ips from log file every 10 sec
-	s.cron.AddJob("@every 10s", job.NewCheckClientIpJob())
+	// s.cron.AddJob("@every 10s", job.NewCheckClientIpJob())
 
 	// 每一天提示一次流量情况,上海时间8点30
 	var entry cron.EntryID
